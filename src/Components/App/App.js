@@ -52,14 +52,14 @@ class App extends React.Component{
         playlistName: 'New Playlist',
         playlistTracks: []
       });
-    });
-
+    })
+}
 
     search(term) {
       Spotify.search(term).then(searchResults => {
-      this.setState({ searchResults: searchResults })
+        this.setState({ searchResults: searchResults })
     });
-    }
+  }
 
   render(){
     return(
@@ -72,11 +72,12 @@ class App extends React.Component{
             <SearchResults
               searchResults={this.state.searchResults}
               onAdd={this.addTrack}
-              onRemove={this.removeTrack}/>
+              />
             <Playlist
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
-              updatePlaylistName={this.updatePlaylistName}
+              onRemove={this.removeTrack}
+              onNameChange={this.updatePlaylistName}
               onSave={this.savePlaylist}/>
           </div>
         </div>
