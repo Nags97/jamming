@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
@@ -10,7 +11,7 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      SearchResults: [],
+      searchResults: [],
       playlistName: 'New Playlist',
       playlistTracks: []
       }
@@ -49,7 +50,7 @@ class App extends React.Component{
       const trackURIs = this.state.playlistTracks.map(track => track.uri);
     Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
       this.setState({
-        playlistName: 'New Playlist',
+        playlistName: 'Enter your Playlist Name',
         playlistTracks: []
       });
     })
