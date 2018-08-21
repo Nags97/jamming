@@ -60,8 +60,9 @@ const Spotify = {
       let userId;
 
       return fetch('https://api.spotify.com/v1/me', {headers: headers}).then(
-        jsonResponse => {
-          userId = jsonResponse.id;
+        response =>{
+          jsonResponse => {
+            userId = jsonResponse.id;
 
           return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {headers: headers,
           method: 'POST',
@@ -83,7 +84,7 @@ const Spotify = {
               body: JSON.stringify({ uris: trackURIs})
           });
         });
-      });
+      }});
     }
   }
 

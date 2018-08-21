@@ -12,7 +12,7 @@ class App extends React.Component{
     super(props);
     this.state = {
       searchResults: [],
-      playlistName: 'New Playlist',
+      playlistName: 'Name Your Playlist',
       playlistTracks: []
       }
     this.addTrack = this.addTrack.bind(this);
@@ -28,18 +28,16 @@ class App extends React.Component{
       if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
         return;
       } else {
-        track.push(track);
-        this.setState({playlistTracks: track});
+      let tracks = this.state.playlistTracks;
+      tracks.push(track);
+      this.setState({playlistTracks: tracks});
+        }
       }
-    }
 
     removeTrack(track){
-      if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
-        track.slice(track)
-        this.setState({playlistTracks: track});
-      }else{
-        return;
-      }
+      let tracks = this.state.playlistTracks;
+    tracks = tracks.filter(current => current.id !== track.id);
+    this.setState({ playlistTracks: tracks });
     }
 
     updatePlaylistName(name){
